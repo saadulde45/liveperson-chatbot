@@ -1,0 +1,18 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: AKIASSNMOKEEYLGITW5K
+          aws-secret-access-key: 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
+          aws-region: eu-central-1
+      - name: Deploy
+        run: aws s3 sync . s3://chatbot-exploration
